@@ -1,0 +1,21 @@
+# Practica integradora de Big Data - dependencias
+# Versiones fijadas para que el entorno sea reproducible.
+
+# --- Motores distribuidos ---
+dask[dataframe]==2026.8.0
+pyspark==3.5.3
+
+# --- Formato de intercambio ---
+pyarrow>=14.0.0
+
+# --- Analisis y modelado ---
+pandas>=2.0.0
+numpy>=1.26.0
+scikit-learn>=1.4.0
+
+# --- Visualizacion ---
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# --- Medicion de memoria ---
+psutil>=5.9.0
