@@ -1,0 +1,7 @@
+data/interim/
+outputs/figuras/*.png
+outputs/metricas/*.csv
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
