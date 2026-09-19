@@ -127,8 +127,6 @@ quitándole primero los objetos de peor relación valor/costo, el algoritmo pas�
 a la heurística. Es un recordatorio de que en algoritmos genéticos el diseño de los
 operadores pesa más que el ajuste de hiperparámetros.
 
----
-
 ## 4. Actividad 3.2 · Caso científico: datos astronómicos
 
 ### 4.1 Artículo de referencia
