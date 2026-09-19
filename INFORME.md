@@ -304,7 +304,7 @@ solo estaría demostrando que memorizó la fórmula con la que se crearon.
 ```
 30 CSV (553 MB)
       │
-      ▼
+      
 ┌─────────────────────────────────────────┐
 │ DASK                                    │
 │  · read_csv con 30 particiones          │
@@ -314,10 +314,10 @@ solo estaría demostrando que memorizó la fórmula con la que se crearon.
 │  · tabla secundaria de campos           │
 └─────────────────────────────────────────┘
       │  to_parquet(partition_on="region")
-      ▼
-  Parquet particionado (414 MB)  ◄── formato de intercambio
+      
+  Parquet particionado (414 MB)  ── formato de intercambio
       │
-      ▼
+      
 ┌─────────────────────────────────────────┐
 │ SPARK                                   │
 │  · read.parquet                         │
@@ -329,8 +329,8 @@ solo estaría demostrando que memorizó la fórmula con la que se crearon.
 │  · MLlib RandomForest                   │
 └─────────────────────────────────────────┘
       │
-      ▼
-  CSV agregados pequeños  ──▶  7 figuras
+      
+  CSV agregados pequeños  ──  7 figuras
 ```
 
 ### 6.2 Justificación de qué motor hace qué
