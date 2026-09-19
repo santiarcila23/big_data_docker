@@ -1,4 +1,4 @@
-# Práctica Integradora de Big Data · Dask + Spark + Docker
+# Práctica de Big Data  Dask + Spark + Docker
 
 **Institución Universitaria de Envigado** Facultad de Ingenierías **Asignatura:** Big Data
 **Docente:** Andrés Felipe Hernández Marulanda
