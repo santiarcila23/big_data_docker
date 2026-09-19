@@ -234,9 +234,7 @@ Bases de datos citadas:
 
 ### 5.2 Análisis del artículo
 
-**Problema.** La lesión renal aguda asociada a sepsis (SA-AKI) tiene mortalidad alta en
-cuidados intensivos. Identificar temprano a los pacientes de mayor riesgo permitiría
-intervenir antes.
+**Problema.** La sepsis es una reacción extrema del organismo ante una infección, que puede dañar sus propios órganos. Cuando afecta los riñones se habla de lesión renal aguda asociada a sepsis. Esta combinación presenta una mortalidad elevada en las unidades de cuidados intensivos, por lo que identificar tempranamente a los pacientes de mayor riesgo permitiría intervenir antes.
 
 **Fuente y volumen.** MIMIC-IV reúne los registros clínicos de todos los ingresos al Beth
 Israel Deaconess Medical Center de Boston entre 2008 y 2022, con signos vitales,
