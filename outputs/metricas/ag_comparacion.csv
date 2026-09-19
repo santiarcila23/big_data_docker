@@ -1,0 +1,4 @@
+version,segundos,mejor_valor,aceleracion
+Secuencial,18.73,7331.6,1.0
+Dask (procesos),16.64,7331.6,1.13
+Dask (hilos),21.35,7331.6,0.88

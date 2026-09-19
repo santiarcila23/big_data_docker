@@ -1,0 +1,85 @@
+timestamp,operacion,etapa,motor,escala,filas,segundos,memoria_pico_mb,nota
+2026-09-18T02:44:58,generacion_datos,0-generacion,pandas,grande,3000000,38.082,,"30 archivos CSV, 553 MB"
+2026-09-18T02:45:03,ingesta_conteo,1-dask-ingesta,dask,grande,3000000,4.551,241.5,30 particiones
+2026-09-18T02:45:20,limpieza_transformacion_parquet,1-dask-transformacion,dask,grande,3000000,16.473,277.2,CSV 553MB -> Parquet 414MB
+2026-09-18T02:45:25,tabla_campos,1-dask-transformacion,dask,grande,856,5.043,280.2,tabla secundaria para join
+2026-09-18T02:46:32,arranque_jvm,2-spark-lectura,spark,grande,0,4.926,134.1,costo fijo de levantar la JVM
+2026-09-18T02:46:44,lectura_parquet,2-spark-lectura,spark,grande,3000000,11.435,134.1,entrada producida por Dask
+2026-09-18T02:46:51,filtros_transformaciones,2-spark-transformacion,spark,grande,2928603,6.936,134.2,
+2026-09-18T02:47:02,agregacion_por_clase,2-spark-agregacion,spark,grande,2928603,9.62,134.2,groupBy + 6 agregados
+2026-09-18T02:47:13,funcion_ventana_top10,2-spark-avanzado,spark,grande,2928603,10.038,141.8,row_number + percent_rank particionado por region
+2026-09-18T02:47:21,join_broadcast_campos,2-spark-avanzado,spark,grande,2928603,7.422,142.1,broadcast join catalogo x 856 campos
+2026-09-18T02:47:32,spark_sql_agrupado,2-spark-avanzado,spark,grande,2928603,6.309,142.1,GROUP BY 3 claves + HAVING
+2026-09-18T02:48:01,mllib_random_forest,2-spark-avanzado,spark,grande,83481,28.203,142.4,"coadicion 83481 objetos, exactitud=0.9689"
+2026-09-18T02:48:21,etapa_spark_completa,2-spark-total,spark,grande,2928603,113.075,146.1,incluye arranque de la JVM
+2026-09-18T02:50:54,ag_secuencial,3-algoritmo-genetico,python,grande,8,1.795,114.9,8 semillas x 220 generaciones
+2026-09-18T02:50:57,ag_dask_procesos,3-algoritmo-genetico,dask,grande,8,2.307,115.4,8 semillas en paralelo con dask.delayed
+2026-09-18T02:50:58,ag_dask_hilos,3-algoritmo-genetico,dask,grande,8,1.77,115.7,"planificador de hilos, limitado por el GIL"
+2026-09-18T02:52:01,ag_secuencial,3-algoritmo-genetico,python,grande,8,13.141,115.4,8 semillas x 400 generaciones
+2026-09-18T02:52:14,ag_dask_procesos,3-algoritmo-genetico,dask,grande,8,13.435,115.8,8 semillas en paralelo con dask.delayed
+2026-09-18T02:52:27,ag_dask_hilos,3-algoritmo-genetico,dask,grande,8,12.88,116.1,"planificador de hilos, limitado por el GIL"
+2026-09-18T02:52:42,ag_dask_1_workers,3-algoritmo-genetico,dask,grande,8,13.456,121.6,"1 procesos, maquina de 1 nucleo(s)"
+2026-09-18T02:52:56,ag_dask_2_workers,3-algoritmo-genetico,dask,grande,8,13.995,121.6,"2 procesos, maquina de 1 nucleo(s)"
+2026-09-18T02:53:10,ag_dask_4_workers,3-algoritmo-genetico,dask,grande,8,13.958,121.7,"4 procesos, maquina de 1 nucleo(s)"
+2026-09-18T02:53:24,ag_dask_8_workers,3-algoritmo-genetico,dask,grande,8,13.822,121.7,"8 procesos, maquina de 1 nucleo(s)"
+2026-09-18T02:54:40,preprocesamiento_medico,4-caso-medico,dask,grande,400000,2.872,324.3,CSV 29MB -> Parquet 11MB
+2026-09-18T02:55:21,modelo_medico,4-caso-medico,sklearn,grande,80000,37.531,365.8,AUC=0.6874
+2026-09-18T02:57:12,comp_agregacion_simple,5-comparacion,dask,grande,1464147,13.877,306.3,tamano 50%
+2026-09-18T02:57:12,comp_agregacion_simple,5-comparacion,spark,grande,1465359,1.32,306.3,tamano 50%
+2026-09-18T02:58:07,comp_agregacion_compuesta,5-comparacion,dask,grande,1464147,25.884,291.2,tamano 50%
+2026-09-18T02:58:07,comp_agregacion_compuesta,5-comparacion,spark,grande,1465359,1.243,291.2,tamano 50%
+2026-09-18T02:58:26,comp_join_agregacion,5-comparacion,dask,grande,1464147,17.122,319.6,tamano 50%
+2026-09-18T02:58:26,comp_join_agregacion,5-comparacion,spark,grande,1465359,1.672,319.6,tamano 50%
+2026-09-18T03:17:44,arranque_motor,5-comparacion,spark,grande,0,15.027,174.0,costo fijo de la JVM
+2026-09-18T03:17:44,arranque_motor,5-comparacion,dask,grande,0,0.443,174.0,sin JVM
+2026-09-18T03:19:00,comp_A,5-comparacion,dask,grande,1465359,2.452,349.7,tamano 50%
+2026-09-18T03:19:00,comp_A,5-comparacion,spark,grande,1465359,1.18,349.7,tamano 50%
+2026-09-18T03:19:17,comp_B,5-comparacion,dask,grande,1465359,4.421,355.8,tamano 50%
+2026-09-18T03:19:17,comp_B,5-comparacion,spark,grande,1465359,0.988,355.8,tamano 50%
+2026-09-18T03:19:26,comp_C,5-comparacion,dask,grande,1465359,3.394,357.6,tamano 50%
+2026-09-18T03:19:26,comp_C,5-comparacion,spark,grande,1465359,1.006,357.6,tamano 50%
+2026-09-18T03:19:53,comp_A,5-comparacion,dask,grande,2928603,2.576,443.7,tamano 100%
+2026-09-18T03:19:53,comp_A,5-comparacion,spark,grande,2928603,0.826,443.7,tamano 100%
+2026-09-18T03:20:09,comp_B,5-comparacion,dask,grande,2928603,4.524,445.7,tamano 100%
+2026-09-18T03:20:09,comp_B,5-comparacion,spark,grande,2928603,0.747,445.7,tamano 100%
+2026-09-18T03:20:18,comp_C,5-comparacion,dask,grande,2928603,3.583,447.7,tamano 100%
+2026-09-18T03:20:18,comp_C,5-comparacion,spark,grande,2928603,0.802,447.7,tamano 100%
+2026-09-18T12:15:13,ingesta_conteo,1-dask-ingesta,dask,grande,3000000,3.664,278.6,30 particiones
+2026-09-18T12:15:34,limpieza_transformacion_parquet,1-dask-transformacion,dask,grande,3000000,21.413,361.4,CSV 553MB -> Parquet 414MB
+2026-09-18T12:15:39,tabla_campos,1-dask-transformacion,dask,grande,856,4.563,332.0,tabla secundaria para join
+2026-09-19T10:37:23,generacion_datos,0-generacion,pandas,pequena,400000,16.737,,"4 archivos CSV, 73 MB"
+2026-09-19T10:37:26,ingesta_conteo,1-dask-ingesta,dask,pequena,400000,1.798,222.9,4 particiones
+2026-09-19T10:37:40,limpieza_transformacion_parquet,1-dask-transformacion,dask,pequena,400000,8.341,671.9,CSV 73MB -> Parquet 55MB
+2026-09-19T10:37:45,tabla_campos,1-dask-transformacion,dask,pequena,856,5.559,648.1,tabla secundaria para join
+2026-09-19T10:37:51,arranque_jvm,2-spark-lectura,spark,pequena,0,5.137,659.3,costo fijo de levantar la JVM
+2026-09-19T10:38:03,lectura_parquet,2-spark-lectura,spark,pequena,400000,12.026,659.3,entrada producida por Dask
+2026-09-19T10:38:09,filtros_transformaciones,2-spark-transformacion,spark,pequena,391768,5.683,659.3,
+2026-09-19T10:38:27,agregacion_por_clase,2-spark-agregacion,spark,pequena,391768,13.755,659.3,groupBy + 6 agregados
+2026-09-19T10:38:38,funcion_ventana_top10,2-spark-avanzado,spark,pequena,391768,9.553,660.0,row_number + percent_rank particionado por region
+2026-09-19T10:38:46,join_broadcast_campos,2-spark-avanzado,spark,pequena,391768,7.598,660.0,broadcast join catalogo x 856 campos
+2026-09-19T10:38:58,spark_sql_agrupado,2-spark-avanzado,spark,pequena,391768,6.527,660.0,GROUP BY 3 claves + HAVING
+2026-09-19T10:39:29,mllib_random_forest,2-spark-avanzado,spark,pequena,83481,30.715,660.3,"coadicion 83481 objetos, exactitud=0.9676"
+2026-09-19T10:39:45,etapa_spark_completa,2-spark-total,spark,pequena,391768,119.071,660.9,incluye arranque de la JVM
+2026-09-19T10:40:04,ag_secuencial,3-algoritmo-genetico,python,pequena,8,18.731,661.3,8 semillas x 400 generaciones
+2026-09-19T10:40:21,ag_dask_procesos,3-algoritmo-genetico,dask,pequena,8,16.636,661.3,8 semillas en paralelo con dask.delayed
+2026-09-19T10:40:42,ag_dask_hilos,3-algoritmo-genetico,dask,pequena,8,21.354,609.8,"planificador de hilos, limitado por el GIL"
+2026-09-19T10:41:04,ag_dask_1_workers,3-algoritmo-genetico,dask,pequena,8,19.834,609.9,"1 procesos, maquina de 12 nucleo(s)"
+2026-09-19T10:41:22,ag_dask_2_workers,3-algoritmo-genetico,dask,pequena,8,17.34,609.9,"2 procesos, maquina de 12 nucleo(s)"
+2026-09-19T10:41:37,ag_dask_4_workers,3-algoritmo-genetico,dask,pequena,8,15.607,609.9,"4 procesos, maquina de 12 nucleo(s)"
+2026-09-19T10:41:53,ag_dask_8_workers,3-algoritmo-genetico,dask,pequena,8,15.559,609.9,"8 procesos, maquina de 12 nucleo(s)"
+2026-09-19T10:42:05,preprocesamiento_medico,4-caso-medico,dask,pequena,400000,5.183,928.9,CSV 29MB -> Parquet 11MB
+2026-09-19T10:42:52,modelo_medico,4-caso-medico,sklearn,pequena,80000,42.531,1077.3,AUC=0.6874
+2026-09-19T10:42:54,arranque_motor,5-comparacion,spark,pequena,0,0.158,990.4,costo fijo de la JVM
+2026-09-19T10:42:54,arranque_motor,5-comparacion,dask,pequena,0,2.167,990.4,sin JVM
+2026-09-19T10:43:12,comp_A,5-comparacion,dask,pequena,196225,1.406,822.6,tamano 50%
+2026-09-19T10:43:12,comp_A,5-comparacion,spark,pequena,196225,0.211,822.6,tamano 50%
+2026-09-19T10:43:20,comp_B,5-comparacion,dask,pequena,196225,2.394,825.7,tamano 50%
+2026-09-19T10:43:20,comp_B,5-comparacion,spark,pequena,196225,0.185,825.7,tamano 50%
+2026-09-19T10:43:25,comp_C,5-comparacion,dask,pequena,196225,2.0,827.5,tamano 50%
+2026-09-19T10:43:25,comp_C,5-comparacion,spark,pequena,196225,0.44,827.5,tamano 50%
+2026-09-19T10:43:42,comp_A,5-comparacion,dask,pequena,391768,1.4,874.0,tamano 100%
+2026-09-19T10:43:42,comp_A,5-comparacion,spark,pequena,391768,0.134,874.0,tamano 100%
+2026-09-19T10:43:50,comp_B,5-comparacion,dask,pequena,391768,2.456,918.8,tamano 100%
+2026-09-19T10:43:50,comp_B,5-comparacion,spark,pequena,391768,0.206,918.8,tamano 100%
+2026-09-19T10:43:55,comp_C,5-comparacion,dask,pequena,391768,2.186,922.9,tamano 100%
+2026-09-19T10:43:55,comp_C,5-comparacion,spark,pequena,391768,0.291,922.9,tamano 100%

@@ -1,0 +1,14 @@
+clase,distancia,calidad_campo,objetos,redshift_medio,color_gr,dist_mpc_media
+GALAXY,intermedio,buena,86055,0.2994,1.3903,1282.2
+GALAXY,lejano,buena,85220,0.6694,1.4592,2867.1
+QSO,lejano,buena,60560,1.7965,0.2849,7693.9
+GALAXY,cercano,buena,27365,0.0625,0.6773,267.6
+STAR,cercano,buena,26543,0.0002,0.7316,1.1
+GALAXY,intermedio,media,12807,0.298,1.3834,1276.4
+GALAXY,lejano,media,12599,0.6682,1.4877,2861.8
+QSO,lejano,media,9102,1.8043,0.2816,7727.2
+GALAXY,cercano,media,4310,0.0621,0.6714,265.8
+STAR,cercano,media,4095,0.0002,0.7492,1.1
+QSO,intermedio,buena,3088,0.3297,0.621,1411.9
+GALAXY,intermedio,pobre,1225,0.2939,1.3831,1258.8
+GALAXY,lejano,pobre,1134,0.6843,1.4761,2930.5

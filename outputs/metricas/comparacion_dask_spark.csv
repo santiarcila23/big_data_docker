@@ -1,0 +1,7 @@
+operacion,tamano,filas,dask_seg,spark_seg,ganador,factor
+A. Agregacion simple (groupBy 1 clave),50%,196225,1.41,0.21,Spark,6.67
+B. Agregacion compuesta (2 claves),50%,196225,2.39,0.18,Spark,12.97
+C. Join + agregacion,50%,196225,2.0,0.44,Spark,4.55
+A. Agregacion simple (groupBy 1 clave),100%,391768,1.4,0.13,Spark,10.42
+B. Agregacion compuesta (2 claves),100%,391768,2.46,0.21,Spark,11.9
+C. Join + agregacion,100%,391768,2.19,0.29,Spark,7.52

@@ -1,0 +1,4 @@
+class,objetos,redshift_medio,redshift_desv,color_gr_medio,color_ri_medio,magnitud_media
+GALAXY,232907,0.4216,0.2648,1.3186,0.7355,20.077
+STAR,84573,-0.0001,0.0005,0.6704,0.4032,19.32
+QSO,74288,1.7196,0.913,0.302,0.1929,20.759
