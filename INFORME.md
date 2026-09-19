@@ -1,6 +1,5 @@
 # Práctica de Big Data Dask, Apache Spark y Docker
 
-**Docente:** Andrés Felipe Hernández Marulanda
 **Integrantes:** Natalia Flores Pérez, Santiago Arcila Gutiérrez, Alejandro Restrepo Uribe y Antonio Patiño Montoya
 
 ---
