@@ -1,18 +1,6 @@
-# =============================================================================
-#  docker-compose - Practica integradora de Big Data
-# =============================================================================
-#
-# Dos servicios:
-#
-#   pipeline : ejecuta el flujo completo (Dask -> Parquet -> Spark) y termina.
-#              Es el servicio principal y el que hay que correr para evaluar.
-#
-#   jupyter  : levanta un Jupyter Lab con el mismo entorno, para la exploracion
-#              y para revisar los notebooks. Es la ampliacion opcional que
-#              menciona la guia.
-#
-# Los volumenes montan data/ y outputs/ desde el equipo anfitrion, de modo que
-# los resultados sobreviven cuando el contenedor se detiene.
+# pipeline ejecuta el flujo completo (Dask -> Parquet -> Spark) y termina, es el servicio principal y el que hay que correr para evaluar
+# jupyter levanta un Jupyter Lab con el mismo entorno, para la exploracion y para revisar los notebooks, es la ampliacion opcional que menciona la guia
+# Los volumenes montan data/ y outputs/ desde el equipo anfitrion de modo que los resultados sobreviven cuando el contenedor se detiene
 
 services:
 
@@ -27,8 +15,7 @@ services:
     volumes:
       - ./data:/app/data
       - ./outputs:/app/outputs
-    # Spark local necesita holgura de memoria; el limite evita que el
-    # contenedor consuma toda la RAM del anfitrion.
+    # Spark local necesita holgura de memoria, el limite evita que el contenedor consuma toda la RAM del anfitrion
     deploy:
       resources:
         limits:
@@ -52,4 +39,4 @@ services:
       - ./outputs:/app/outputs
       - ./notebooks:/app/notebooks
       - ./src:/app/src
-    profiles: ["exploracion"]   # no arranca por defecto: docker compose --profile exploracion up
+    profiles: ["exploracion"]   # no arranca por defecto el docker compose --profile exploracion up
