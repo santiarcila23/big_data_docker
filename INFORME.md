@@ -296,10 +296,12 @@ Conviene además notar que el AUC de 0,687 es modesto. Es consistente con haber 
 ruido deliberado en la generación: un modelo que alcanzara 0,99 sobre datos sintéticos
 solo estaría demostrando que memorizó la fórmula con la que se crearon.
 
+
 ## 6. Actividad 3.4 · Pipeline integrador Dask + Spark
 
 ### 6.1 Arquitectura
 
+```
 30 CSV (553 MB)
       │
       ▼
@@ -329,6 +331,7 @@ solo estaría demostrando que memorizó la fórmula con la que se crearon.
       │
       ▼
   CSV agregados pequeños  ──▶  7 figuras
+```
 
 ### 6.2 Justificación de qué motor hace qué
 
