@@ -1,0 +1,7 @@
+data/interim/
+outputs/
+__pycache__/
+*.pyc
+.venv/
+.git/
+notebooks/.ipynb_checkpoints/
