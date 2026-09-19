@@ -14,7 +14,7 @@ Dask y Spark se usan de forma complementaria dentro de un mismo flujo, no como d
 ejercicios sueltos.
 
 ```
-CSV particionados ──▶ DASK ──▶ Parquet ──▶ SPARK ──▶ resultados agregados ──▶ figuras
+CSV particionados ── DASK ── Parquet ── SPARK ── resultados agregados ── figuras
   (30 archivos)      ingesta   particionado  agregaciones      CSV pequeños
    3,0 M filas       limpieza   por región   ventana, join
    553 MB            derivadas               SQL, MLlib
