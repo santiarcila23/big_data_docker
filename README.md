@@ -1,9 +1,9 @@
 # Práctica Integradora de Big Data · Dask + Spark + Docker
 
-**Institución Universitaria de Envigado** · Facultad de Ingenierías · Asignatura: Big Data
+**Institución Universitaria de Envigado** Facultad de Ingenierías Asignatura: Big Data
 **Docente:** Andrés Felipe Hernández Marulanda
 
-**Integrantes:** Natalia Flores Pérez · Santiago Arcila Gutiérrez · Alejandro Restrepo Uribe
+**Integrantes:** Natalia Flores Pérez, Santiago Arcila Gutiérrez, Alejandro Restrepo Uribe y Antonio Patiño Montoya
 
 ---
 
