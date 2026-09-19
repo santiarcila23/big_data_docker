@@ -2,27 +2,25 @@
 
 **Integrantes:** Natalia Flores Pérez, Santiago Arcila Gutiérrez, Alejandro Restrepo Uribe y Antonio Patiño Montoya
 
----
 
 ## 1. Resumen
 
 Construimos un flujo de Big Data reproducible sobre un catálogo astronómico real del
 Sloan Digital Sky Survey, en el que Dask y Spark se usan de forma complementaria dentro
-de un mismo pipeline. Dask se encarga de la ingesta particionada, la limpieza y la
+de un mismo pipeline, Dask se encarga de la ingesta particionada, la limpieza y la
 generación de variables derivadas, y entrega su salida en Parquet particionado por región
 del cielo. Spark toma ese Parquet y ejecuta las operaciones que requieren redistribución
-de datos: agregaciones, funciones de ventana, un join entre dos tablas, consultas SQL y
-un modelo de clasificación con MLlib.
+de datos agregaciones, funciones de ventana, un join entre dos tablas, consultas SQL y
+un modelo de clasificación con MLlib
 
-El acoplamiento entre los dos motores es real y verificable: la etapa de Spark no lee los
-archivos originales, sino la salida de Dask. Si la etapa de Dask no se ejecuta, la de
-Spark no tiene entrada.
+El acoplamiento entre los dos motores es real y verificable, la etapa de Spark no lee los
+archivos originales, sino la salida de Dask si la etapa de Dask no se ejecuta, la de
+Spark no tiene entrada
 
 Todo el proyecto se empaqueta con Docker y corre con un solo comando.
 
----
 
-## 2. Entorno de medición
+# 2. Entorno de medición
 
 | Recurso | Valor |
 |---|---|
@@ -35,18 +33,17 @@ Todo el proyecto se empaqueta con Docker y corre con un solo comando.
 | Memoria del driver de Spark | 2 GB |
 | Particiones de shuffle | 8 |
 
-Este entorno condiciona dos resultados del informe y conviene tenerlo presente al leerlos:
-con un solo núcleo, ninguna paralelización puede acelerar nada, y Spark corre como un
+Este entorno condiciona dos resultados del informe y conviene tenerlo presente al leerlos
+con un solo núcleo, ninguna paralelización puede acelerar nada y Spark corre como un
 único proceso que simula un clúster.
 
----
 
-## 3. Actividad 3.1 · Algoritmos genéticos y procesamiento paralelo
+# 3. Actividad 3.1 Algoritmos genéticos y procesamiento paralelo
 
-### 3.1.1 Qué son
+# 3.1.1 Qué son
 
-Un algoritmo genético es una técnica de optimización inspirada en la evolución biológica.
-En lugar de buscar el óptimo con cálculo diferencial, mantiene una población de soluciones
+Un algoritmo genético es una técnica de optimización inspirada en la evolución biológica,
+en lugar de buscar el óptimo con cálculo diferencial, mantiene una población de soluciones
 candidatas que compiten y se reproducen durante generaciones sucesivas.
 
 **Representación.** Cada individuo es un vector binario de longitud N: un 1 significa
@@ -303,13 +300,10 @@ Conviene además notar que el AUC de 0,687 es modesto. Es consistente con haber 
 ruido deliberado en la generación: un modelo que alcanzara 0,99 sobre datos sintéticos
 solo estaría demostrando que memorizó la fórmula con la que se crearon.
 
----
-
 ## 6. Actividad 3.4 · Pipeline integrador Dask + Spark
 
 ### 6.1 Arquitectura
 
-```
 30 CSV (553 MB)
       │
       ▼
@@ -339,7 +333,6 @@ solo estaría demostrando que memorizó la fórmula con la que se crearon.
       │
       ▼
   CSV agregados pequeños  ──▶  7 figuras
-```
 
 ### 6.2 Justificación de qué motor hace qué
 
@@ -477,8 +470,6 @@ dos de las tres clases. Los índices de color, que son las variables derivadas q
 en la etapa de Dask, aportan en conjunto un 28% de la importancia y son los que permiten
 distinguir galaxias de cuásares en el rango de redshift donde se solapan.
 
----
-
 ## 7. Comparación Dask vs Spark
 
 ### 7.1 Condiciones de la medición
@@ -541,8 +532,6 @@ pregunta correcta es qué operación se va a ejecutar. Para preprocesar archivos
 resultados, Dask. Para agregar, unir y consultar, Spark. Que es exactamente la división
 que adoptamos en el pipeline.
 
----
-
 ## 8. Actividad 3.5 · Docker y reproducibilidad
 
 El proyecto incluye `Dockerfile`, `docker-compose.yml` y `requirements.txt` con versiones
@@ -564,8 +553,6 @@ El `docker-compose.yml` define dos servicios: `pipeline`, que ejecuta el flujo y
 y `jupyter`, un servicio opcional bajo perfil que levanta Jupyter Lab con el mismo entorno
 y expone también el puerto 4040 de la interfaz web de Spark.
 
----
-
 ## 9. Conclusión técnica: qué herramienta para cada etapa en un escenario real
 
 | Etapa | Herramienta | Por qué |
@@ -582,8 +569,6 @@ y expone también el puerto 4040 de la interfaz web de Spark.
 datos que caben cómodamente en memoria, pandas es más rápido que ambos y mucho más simple.
 La complejidad de un motor distribuido solo se justifica cuando el archivo no cabe o cuando
 el cálculo tarda lo suficiente como para que valga la pena repartirlo.
-
----
 
 ## 10. Respuestas a las preguntas de sustentación
 
@@ -639,8 +624,6 @@ reemplazar el planificador local por un `dask.distributed.Client` apuntando a un
 planificador remoto. El código de análisis en sí no cambiaría: esa es precisamente la
 ventaja de haber usado las API de alto nivel de ambos motores.
 
----
-
 ## 11. Limitaciones declaradas
 
 1. **El entorno de medición tiene un solo núcleo.** Ninguna medición de paralelismo de
@@ -667,8 +650,6 @@ ventaja de haber usado las API de alto nivel de ambos motores.
 6. **La aproximación de distancia usa la ley de Hubble simple**, que no es válida para
    redshift alto. Los valores de distancia de los cuásares son ilustrativos, no
    cosmológicamente correctos.
-
----
 
 ## 12. Referencias
 
