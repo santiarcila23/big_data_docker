@@ -1,0 +1,55 @@
+# =============================================================================
+#  docker-compose - Practica integradora de Big Data
+# =============================================================================
+#
+# Dos servicios:
+#
+#   pipeline : ejecuta el flujo completo (Dask -> Parquet -> Spark) y termina.
+#              Es el servicio principal y el que hay que correr para evaluar.
+#
+#   jupyter  : levanta un Jupyter Lab con el mismo entorno, para la exploracion
+#              y para revisar los notebooks. Es la ampliacion opcional que
+#              menciona la guia.
+#
+# Los volumenes montan data/ y outputs/ desde el equipo anfitrion, de modo que
+# los resultados sobreviven cuando el contenedor se detiene.
+
+services:
+
+  pipeline:
+    build: .
+    image: practica-bigdata:latest
+    container_name: bigdata-pipeline
+    environment:
+      ESCALA: ${ESCALA:-pequena}
+      SPARK_DRIVER_MEM: ${SPARK_DRIVER_MEM:-2g}
+      SPARK_SHUFFLE_PARTITIONS: ${SPARK_SHUFFLE_PARTITIONS:-8}
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+    # Spark local necesita holgura de memoria; el limite evita que el
+    # contenedor consuma toda la RAM del anfitrion.
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+
+  jupyter:
+    build: .
+    image: practica-bigdata:latest
+    container_name: bigdata-jupyter
+    command: >
+      sh -c "pip install --no-cache-dir jupyterlab &&
+             jupyter lab --ip=0.0.0.0 --port=8888 --no-browser
+             --allow-root --NotebookApp.token=''"
+    ports:
+      - "8888:8888"
+      - "4040:4040"      # interfaz web de Spark, util para ver el plan de ejecucion
+    environment:
+      ESCALA: ${ESCALA:-pequena}
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./notebooks:/app/notebooks
+      - ./src:/app/src
+    profiles: ["exploracion"]   # no arranca por defecto: docker compose --profile exploracion up
