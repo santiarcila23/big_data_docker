@@ -152,13 +152,13 @@ el modelo.
 | 3.1 Paralelización con Dask y comparación | `src/03_algoritmo_genetico.py` |
 | 3.2 Caso astronómico (artículo + reproducción) | `src/01_dask_ingesta.py`, `src/02_spark_procesamiento.py`, informe |
 | 3.3 Caso médico (artículo + ejercicio equivalente) | `src/04_caso_medico.py` |
-| 3.4 Ingesta y particionamiento con Dask | `src/01_dask_ingesta.py` §1.1 |
-| 3.4 Limpieza, 2+ derivadas, Parquet particionado | `src/01_dask_ingesta.py` §1.2–1.4 |
-| 3.4 Spark lee la salida de Dask | `src/02_spark_procesamiento.py` §2.1 |
-| 3.4 Funciones de ventana | `src/02_spark_procesamiento.py` §2.4 |
-| 3.4 Join entre datasets | `src/02_spark_procesamiento.py` §2.5 |
-| 3.4 Spark SQL | `src/02_spark_procesamiento.py` §2.6 |
-| 3.4 Modelo con MLlib | `src/02_spark_procesamiento.py` §2.7 |
+| 3.4 Ingesta y particionamiento con Dask | `src/01_dask_ingesta.py` 1.1 |
+| 3.4 Limpieza, 2+ derivadas, Parquet particionado | `src/01_dask_ingesta.py` 1.2–1.4 |
+| 3.4 Spark lee la salida de Dask | `src/02_spark_procesamiento.py` 2.1 |
+| 3.4 Funciones de ventana | `src/02_spark_procesamiento.py` 2.4 |
+| 3.4 Join entre datasets | `src/02_spark_procesamiento.py` 2.5 |
+| 3.4 Spark SQL | `src/02_spark_procesamiento.py` 2.6 |
+| 3.4 Modelo con MLlib | `src/02_spark_procesamiento.py` 2.7 |
 | 3.4 Comparación de tiempos Dask vs Spark | `src/05_comparacion.py` |
 | 3.4 Tres o más visualizaciones | `src/06_visualizaciones.py` → `outputs/figuras/` |
 | 3.5 Docker y reproducibilidad | `Dockerfile`, `docker-compose.yml`, este README |
@@ -188,5 +188,5 @@ condiciona dos resultados que conviene leer con ese contexto:
 - La paralelización del algoritmo genético **no acelera nada**, porque el techo de
   aceleración es el número de núcleos, el código está correctamente paralelizado; el
   entorno no permite aprovecharlo, está medido y discutido en el informe.
-- Spark corre en modo `local[*]` es decir, un solo proceso simulando un clúster, sus
+- Spark corre en modo local[*] es decir, un solo proceso simulando un clúster, sus
   ventajas de distribución real no se ven, lo que sí se ve es su motor de ejecución.
