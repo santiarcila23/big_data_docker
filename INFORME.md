@@ -217,8 +217,6 @@ estrellas, la agrupación azul de los cuásares y la bimodalidad característica
 galaxias entre la secuencia roja y la nube azul. Ninguna de esas estructuras fue impuesta:
 emergen de los datos reales.
 
----
-
 ## 5. Actividad 3.3 · Caso científico: datos médicos
 
 ### 5.1 Artículo de referencia
